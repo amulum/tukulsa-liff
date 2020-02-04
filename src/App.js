@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import './App.css'
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 
 const liff = window.liff;
 
@@ -48,25 +48,25 @@ class App extends Component {
 
   render() {
     return (
-      <Redirect to="https://app.sandbox.midtrans.com/snap/v2/vtweb/b3ff18b5-617a-4d88-bcae-4c8db81e1255" />
-      // <div className="container">
-      //   <div className="columns m-t-10">
-      //     <div className="column col-xs-12">
-      //       <div className="panel">
-      //         <div className="panel-header text-center">
-      //           <figure className="avatar avatar-lg">
-      //             <img src={this.state.pictureUrl} alt="Avatar" />
-      //           </figure>
-      //           <div className="panel-title h5 mt-10">{this.state.displayName}</div>
-      //           <div className="panel-subtitle">{this.state.statusMessage}</div>
-      //         </div>
-      //         <div className="panel-footer">
-      //           <button className="btn btn-primary btn-block" onClick={this.closeApp}>Close</button>
-      //         </div>
-      //       </div>
-      //     </div>
-      //   </div>
-      // </div>
+      // <Redirect to="https://app.sandbox.midtrans.com/snap/v2/vtweb/b3ff18b5-617a-4d88-bcae-4c8db81e1255" />
+      <div className="container">
+        <div className="columns m-t-10">
+          <div className="column col-xs-12">
+            <div className="panel">
+              <div className="panel-header text-center">
+                <figure className="avatar avatar-lg">
+                  <img src={this.state.pictureUrl} alt="Avatar" />
+                </figure>
+                <div className="panel-title h5 mt-10">{this.state.displayName}</div>
+                <div className="panel-subtitle">{this.state.statusMessage}</div>
+              </div>
+              <div className="panel-footer">
+                <button className="btn btn-primary btn-block" onClick={this.closeApp}>Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
