@@ -1,71 +1,26 @@
 import React, { Component } from 'react';
-
-import './App.css'
-// import { Redirect } from 'react-router-dom';
-
-const liff = window.liff;
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import './App.css';
+import Profile from './pages/Profile';
+import SendMessage from './pages/SendMessage';
+import LIFFWindow from './pages/LIFFWindow';
+import Header from './pages/components/Header';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      displayName : '',
-      userId : '',
-      pictureUrl : '',
-      statusMessage : ''
-    };
-
-    this.initialize = this.initialize.bind(this);
-    this.closeApp = this.closeApp.bind(this);
-  }
-
-  componentDidMount() {
-    window.addEventListener('load', this.initialize);
-  }
-
-  initialize() {
-    liff.init(async (data) => {
-      let profile = await liff.getProfile();
-      this.setState({
-        displayName : profile.displayName,
-        userId : profile.userId,
-        pictureUrl : profile.pictureUrl,
-        statusMessage : profile.statusMessage
-      });
-    }); 
-  }
-
-  closeApp(event) {
-    event.preventDefault();
-    liff.sendMessages([{
-      type: 'text',
-      text: "Bye Bye!!!"
-    }]).then(() => {
-      liff.closeWindow();
-    });
-  }
-
   render() {
     return (
-      // <Redirect to="https://app.sandbox.midtrans.com/snap/v2/vtweb/b3ff18b5-617a-4d88-bcae-4c8db81e1255" />
-      <div className="container">
-        <div className="columns m-t-10">
-          <div className="column col-xs-12">
-            <div className="panel">
-              <div className="panel-header text-center">
-                <figure className="avatar avatar-lg">
-                  <img src={this.state.pictureUrl} alt="Avatar" />
-                </figure>
-                <div className="panel-title h5 mt-10">{this.state.displayName}</div>
-                <div className="panel-subtitle">{this.state.statusMessage}</div>
-              </div>
-              <div className="panel-footer">
-                <button className="btn btn-primary btn-block" onClick={this.closeApp}>Close</button>
-              </div>
-            </div>
+      <div className="app">
+        <header className="app-header">
+          <h3 className="app-title">React LIFF Boilerplate</h3>
+        </header>
+        <Header />
+        <Router>
+          <div>
+            <Route exact path="/" component={Profile} />
+            <Route path="/message" component={SendMessage} />
+            <Route path="/window" component={LIFFWindow} />
           </div>
-        </div>
+        </Router>
       </div>
     );
   }
