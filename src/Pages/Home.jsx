@@ -30,21 +30,20 @@ class Home extends Component {
   }
 
   render() {
-    console.log(this.props.profile)
-    console.log(this.props.profile.userId)
-    console.log(this.props.profile.displayName)
-    console.log(this.props.profile.pictureUrl)
-    console.log(this.props.profile.statusMessage)
+    console.log(this.props.userId)
+    console.log(this.props.displayName)
+    console.log(this.props.pictureUrl)
+    console.log(this.props.statusMessage)
     return (
       <Fragment>
         <div class="buttonGroup">
                 <button id="liffLoginButton" onClick={this.handleLoginLine}>Log in</button>
                 <button id="liffLogoutButton"onClick={this.handleLoginLine}>Log out</button>
                 <p>
-                  {this.props.profile.userId}
-                  {this.props.profile.displayName}
-                  {this.props.profile.pictureUrl}
-                  {this.props.profile.statusMessage}
+                  {this.props.userId}
+                  {this.props.displayName}
+                  {this.props.pictureUrl}
+                  {this.props.statusMessage}
                 </p>
             </div>
         <ReactMuter />
@@ -53,4 +52,4 @@ class Home extends Component {
   }
 }
 
-export default connect('isLoggedIn, profile', actions) (withRouter(Home));
+export default connect('isLoggedIn, userId, displayName, pictureUrl, statusMessage', actions) (withRouter(Home));

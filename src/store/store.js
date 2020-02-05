@@ -8,12 +8,17 @@ const initialState = {
   OS: '',
   version: '',
   isInClient: '',
-  profile: [],
-  isLoggedIn: false
+  isLoggedIn: false,
+  // profile
+  userId: '',
+  displayName: '',
+  pictureUrl: '',
+  statusMessage: ''
 };
 export const store = createStore(initialState);
 
 // LIFF FUNCTION 
+
 const getLiffData = () => {
   store.setState({
     language: liff.getLanguage(),
@@ -21,13 +26,25 @@ const getLiffData = () => {
     version: liff.getVersion(),
     isInClient: liff.isInClient(),
     isLoggedIn: liff.isLoggedIn(),
-    profile: liff.getProfile()
   })
   console.log('masuk get liffdata', liff.getLanguage())
   console.log('masuk get liffdata', liff.getOS())
   console.log('masuk get liffdata', liff.getVersion())
   console.log('masuk get liffdata', liff.isInClient())
   console.log('masuk get liffdata', liff.isLoggedIn())
+
+  // get profile
+  liff.getProfile().then(profile => {
+    const { userId, displayName, pictureUrl, statusMessage} = profile
+    store.setState({userId, displayName, pictureUrl, statusMessage})
+    console.log('getprofile', userId)
+    console.log('getprofile', displayName)
+    console.log('getprofile', pictureUrl)
+    console.log('getprofile', statusMessage)
+  })
+  .catch((err) => {
+    console.log('error', err);
+  });
 }
 
 const initializeApp = () => {
