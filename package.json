@@ -1,21 +1,21 @@
 {
-  "name": "react-liff-boilerplate",
-  "version": "1.0.0",
+  "name": "test-react",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
     "node": "13.7.0",
     "npm": "6.13.7",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.3.0",
     "sweetalert2": "^7.26.9",
     "unistore": "^3.5.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "browserslist": {
