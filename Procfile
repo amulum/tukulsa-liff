@@ -1,1 +1,2 @@
-web: ./service.js
+web: npm install
+web: npm run build
