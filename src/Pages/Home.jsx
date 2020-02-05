@@ -7,25 +7,25 @@ import { actions } from "../store/store";
 
 class Home extends Component {
 
-  handleLoginLine = () => {
-    if (!window.liff.isLoggedIn()) {
+  handleLoginLine = async ()  => {
+    const liff = await window.liff
+    if (!this.props.isLoggedIn) {
       // set `redirectUri` to redirect the user to a URL other than the front page of your LIFF app.
-      window.liff.login();
+      liff.login();
     }
   }
-  handleLogoutLine = () => {
-    if (window.liff.isLoggedIn()) {
-      window.liff.logout();
+  handleLogoutLine = async ()  => {
+    const liff = await window.liff
+    if (this.props.isLoggedIn) {
+      liff.logout();
       window.location.reload();
     }
   }
   componentDidMount = async () => {
-    console.log(this.props)
-    if (window.liff.isLoggedIn()) {
-      await this.props.initializeLiff()
-      const { profile } = await this.props
-      console.log('profile detail', profile)
-    }
+    console.log('masuk did mount',this.props)
+    const { profile } = await this.props
+    console.log('profile detail', profile)
+    
   }
 
   render() {
@@ -42,4 +42,4 @@ class Home extends Component {
   }
 }
 
-export default connect('profile', actions) (withRouter(Home));
+export default connect('isLoggedIn, profile', actions) (withRouter(Home));

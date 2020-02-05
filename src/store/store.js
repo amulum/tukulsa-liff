@@ -9,6 +9,7 @@ const initialState = {
   version: '',
   isInClient: '',
   profile: [],
+  isLoggedIn: false
 };
 export const store = createStore(initialState);
 
