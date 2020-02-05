@@ -31,11 +31,21 @@ class Home extends Component {
 
   render() {
     console.log(this.props.profile)
+    console.log(this.props.profile.userId)
+    console.log(this.props.profile.displayName)
+    console.log(this.props.profile.pictureUrl)
+    console.log(this.props.profile.statusMessage)
     return (
       <Fragment>
         <div class="buttonGroup">
                 <button id="liffLoginButton" onClick={this.handleLoginLine}>Log in</button>
                 <button id="liffLogoutButton"onClick={this.handleLoginLine}>Log out</button>
+                <p>
+                  {this.props.profile.userId}
+                  {this.props.profile.displayName}
+                  {this.props.profile.pictureUrl}
+                  {this.props.profile.statusMessage}
+                </p>
             </div>
         <ReactMuter />
       </Fragment>
