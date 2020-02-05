@@ -11,18 +11,19 @@ class Home extends Component {
     const liff = await window.liff
     if (!this.props.isLoggedIn) {
       // set `redirectUri` to redirect the user to a URL other than the front page of your LIFF app.
-      liff.login();
+      await liff.login();
     }
   }
   handleLogoutLine = async ()  => {
     const liff = await window.liff
     if (this.props.isLoggedIn) {
-      liff.logout();
+      await liff.logout();
       window.location.reload();
     }
   }
   componentDidMount = async () => {
     console.log('masuk did mount',this.props)
+    await this.props.initializeLiff()
     const { profile } = await this.props
     console.log('profile detail', profile)
     
@@ -32,11 +33,11 @@ class Home extends Component {
     console.log(this.props.profile)
     return (
       <Fragment>
-        <ReactMuter />
         <div class="buttonGroup">
                 <button id="liffLoginButton" onClick={this.handleLoginLine}>Log in</button>
                 <button id="liffLogoutButton"onClick={this.handleLoginLine}>Log out</button>
             </div>
+        <ReactMuter />
       </Fragment>
     )
   }
