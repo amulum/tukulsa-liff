@@ -15,8 +15,8 @@ import ReactMuter from "../Components/ReactMuter";
 class Home extends Component {
 
   componentDidMount = async () => {
-    console.log('masuk did mount',this.props)
     await this.props.initializeLiff()
+    console.log('masuk did mount',this.props)
     const { profile } = await this.props
     console.log('profile detail', profile)
     if (this.props.userId === '') {
@@ -36,7 +36,14 @@ class Home extends Component {
       <Fragment>
         {/* <ReactMuter /> */}
         <AppBar />
-        <TableTransaction />
+        {this.props.isLoggedIn?
+        <Fragment>
+          <TableTransaction />
+          <BottomNav />
+        </Fragment>
+        :
+        <Fragment >
+
         <Grid
           container
           direction="row"
@@ -55,7 +62,8 @@ class Home extends Component {
             {this.props.statusMessage}
           </p>
         </div>
-        <BottomNav />
+        </Fragment>
+        }
       </Fragment>
     )
   }
