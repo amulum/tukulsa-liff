@@ -1,4 +1,5 @@
 import createStore from 'unistore';
+import axios from 'axios'
 
 const liff = window.liff
 
@@ -13,12 +14,12 @@ const initialState = {
   userId: '',
   displayName: '',
   pictureUrl: '',
-  statusMessage: ''
+  statusMessage: '',
+  listTransactions: []
 };
 export const store = createStore(initialState);
 
 // LIFF FUNCTION 
-
 const getLiffData = () => {
   store.setState({
     language: liff.getLanguage(),
@@ -27,11 +28,6 @@ const getLiffData = () => {
     isInClient: liff.isInClient(),
     isLoggedIn: liff.isLoggedIn(),
   })
-  console.log('masuk get liffdata', liff.getLanguage())
-  console.log('masuk get liffdata', liff.getOS())
-  console.log('masuk get liffdata', liff.getVersion())
-  console.log('masuk get liffdata', liff.isInClient())
-  console.log('masuk get liffdata', liff.isLoggedIn())
 
   // get profile
   liff.getProfile().then(profile => {
@@ -47,17 +43,7 @@ const getLiffData = () => {
   });
 }
 
-const initializeApp = () => {
-  console.log('masuk initializeApp')
-  getLiffData();
-  if (liff.isLoggedIn()) {
-    store.setState({
-      isLoggedIn: true
-    });
-  }
-}
-
-
+const apiPath = 'tukulsa-new-test.herokuapp.com'
 
 export const actions = store => ({
   // BASIC FUNCTION
@@ -75,7 +61,44 @@ export const actions = store => ({
   setManyChanges: (store, dict) => {
     store.setState(dict)
   },
+  handleLoginLine : async ()  => {
+    const liff = await window.liff
+    if (!initialState.isLoggedIn) {
+      // set `redirectUri` to redirect the user to a URL other than the front page of your LIFF app.
+      await liff.login();
+    }
+  },
+  handleLogoutLine : async ()  => {
+    const liff = await window.liff
+    if (initialState.isLoggedIn) {
+      await liff.logout();
+      window.location.reload();
+    }
+  },
   // FUNCTIONS
+  getUserTransactions: async (state, line_id) => {
+    const req = {
+      method: 'post',
+      url: `${apiPath}/users/transactions/filterby`,
+      line_id: 'Uc38d44c9d7f172a98011fca096171acd'
+    };
+    console.warn('cek req usertransactions', req);
+    const self = store;
+    await axios(req)
+      .then(response => {
+        self.setState({
+          listTransactions: response.data,
+          isLoading: false
+        });
+        console.log('get user transactions success', response.data);
+      })
+      .catch(error => {
+        self.setState({
+          isLoading: false
+        });
+        console.log(error);
+      });
+  },
   initializeLiff: (store) => {
     // const myLiffId = process.env.MY_LIFF_ID;
     console.log('masuk initializeLiff')
@@ -85,7 +108,13 @@ export const actions = store => ({
       })
       .then(() => {
         // Start to use liff's api
-        initializeApp()
+        console.log('masuk initializeApp')
+        getLiffData();
+        if (liff.isLoggedIn()) {
+          store.setState({
+            isLoggedIn: true
+          });
+        }
       })
       .catch((err) => {
         // Error happens during initialization

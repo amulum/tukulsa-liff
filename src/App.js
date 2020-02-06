@@ -1,10 +1,14 @@
 import React from 'react';
 import Mainroute from './Routes/Mainroute'
+import {
+  StylesProvider
+} from '@material-ui/core';
 
 function App() {
-    return (
-      <Mainroute />
-    );
+  return ( <StylesProvider injectFirst >
+    <Mainroute />
+    </StylesProvider>
+  );
 }
 
 export default App;
