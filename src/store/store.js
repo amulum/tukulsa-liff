@@ -20,8 +20,9 @@ const initialState = {
 export const store = createStore(initialState);
 
 // LIFF FUNCTION 
-const getLiffData = () => {
-  store.setState({
+const getLiffData = async () => {
+  console.log('5')
+  await store.setState({
     language: liff.getLanguage(),
     OS: liff.getOS(),
     version: liff.getVersion(),
@@ -30,15 +31,17 @@ const getLiffData = () => {
   })
 
   // get profile
-  liff.getProfile().then(profile => {
+  await liff.getProfile().then(profile => {
     const { userId, displayName, pictureUrl, statusMessage} = profile
     store.setState({userId, displayName, pictureUrl, statusMessage})
+    console.log('6')
     console.log('getprofile liff', userId)
     console.log('getprofile liff', displayName)
     console.log('getprofile liff', pictureUrl)
     console.log('getprofile liff', statusMessage)
   })
   .catch((err) => {
+    console.log('6 error')
     console.log('error', err);
   });
 }
@@ -104,11 +107,11 @@ export const actions = store => ({
         console.log('masuk error', error);
       });
   },
-  initializeLiff: (store) => {
+  initializeLiff: async (state) => {
     // const myLiffId = process.env.MY_LIFF_ID;
     console.log('2')
     console.log('masuk initializeLiff')
-    liff
+    await liff
       .init({
         liffId: "1653826903-Adz5znvw" // use own liffId
       })
@@ -125,6 +128,7 @@ export const actions = store => ({
       })
       .catch((err) => {
         // Error happens during initialization
+        console.log('4')
         console.log(err.code, err.message);
       });
   }
