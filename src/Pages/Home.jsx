@@ -15,8 +15,10 @@ import ReactMuter from "../Components/ReactMuter";
 class Home extends Component {
 
   componentWillMount = async () => {
+    console.log('1')
     await this.props.initializeLiff()
     console.log('masuk did mount',this.props)
+    console.log('7')
     const { profile } = await this.props
     console.log('profile detail', profile)
   }
@@ -24,6 +26,7 @@ class Home extends Component {
     // if (this.props.userId === '') {
     //   await this.props.getUserTransactions('Uc38d44c9d7f172a98011fca096171acd');
     // } else {
+      console.log('8')
       await this.props.getUserTransactions(this.props.userId);
     // }
     

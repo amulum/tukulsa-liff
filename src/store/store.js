@@ -33,10 +33,10 @@ const getLiffData = () => {
   liff.getProfile().then(profile => {
     const { userId, displayName, pictureUrl, statusMessage} = profile
     store.setState({userId, displayName, pictureUrl, statusMessage})
-    console.log('getprofile', userId)
-    console.log('getprofile', displayName)
-    console.log('getprofile', pictureUrl)
-    console.log('getprofile', statusMessage)
+    console.log('getprofile liff', userId)
+    console.log('getprofile liff', displayName)
+    console.log('getprofile liff', pictureUrl)
+    console.log('getprofile liff', statusMessage)
   })
   .catch((err) => {
     console.log('error', err);
@@ -106,6 +106,7 @@ export const actions = store => ({
   },
   initializeLiff: (store) => {
     // const myLiffId = process.env.MY_LIFF_ID;
+    console.log('2')
     console.log('masuk initializeLiff')
     liff
       .init({
@@ -113,6 +114,7 @@ export const actions = store => ({
       })
       .then(() => {
         // Start to use liff's api
+        console.log('3')
         console.log('masuk initializeApp')
         getLiffData();
         if (liff.isLoggedIn()) {
