@@ -10,7 +10,7 @@ import RowTable from './Loop/RowTable'
 const TableTransaction = (props) => {
   const loopRow = props.listTransactions.map((item, key) => {
     let changeIcon = false
-    if (item.payment_status === "PAID" && item.order_status === 'SUCCESS') {
+    if (item.payment_status === "LUNAS" && item.order_status === 'SUKSES') {
       changeIcon = true
     }
     const colorIcon = changeIcon? 'green' : 'red'

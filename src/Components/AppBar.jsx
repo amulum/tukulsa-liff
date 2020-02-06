@@ -8,6 +8,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import { connect, actions } from 'unistore/react';
 import { withRouter } from 'react-router-dom'
 import { Grid } from '@material-ui/core';
+import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,7 +30,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function MenuAppBar() {
+function MenuAppBar(props) {
   const classes = useStyles();
   const [auth] = React.useState(true);
   // const [anchorEl, setAnchorEl] = React.useState(null);
@@ -54,7 +55,7 @@ function MenuAppBar() {
           <Grid container alignItems="center">
             <Grid item xs={10} className={classes.hello}>
               <Typography >
-                Hi kamuu
+                Hi {props.displayName === '' ? 'kamuu' : props.displayName}
               </Typography>
             </Grid>
             <Grid item xs={2}>
@@ -66,7 +67,11 @@ function MenuAppBar() {
                     aria-haspopup="true"
                     color="inherit"
                   >
-                    <AccountCircle />
+                    {props.pictureUrl === ''?
+                      <Avatar alt="cobain" src={props.pictureUrl} />
+                    :
+                      <AccountCircle />
+                    }
                   </IconButton>
                 </div>
               )}
@@ -86,4 +91,4 @@ function MenuAppBar() {
     </Fragment>
   );
 }
-export default connect('isLoggedIn', actions)(withRouter(MenuAppBar))
+export default connect('isLoggedIn, displayName, pictureUrl', actions)(withRouter(MenuAppBar))
