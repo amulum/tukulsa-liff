@@ -21,11 +21,11 @@ class Home extends Component {
     console.log('profile detail', profile)
   }
   componentDidMount = async () => {
-    if (this.props.userId === '') {
-      await this.props.getUserTransactions('Uc38d44c9d7f172a98011fca096171acd');
-    } else {
+    // if (this.props.userId === '') {
+    //   await this.props.getUserTransactions('Uc38d44c9d7f172a98011fca096171acd');
+    // } else {
       await this.props.getUserTransactions(this.props.userId);
-    }
+    // }
     
   }
 
