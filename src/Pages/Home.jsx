@@ -9,6 +9,7 @@ import AppBar from "../Components/AppBar";
 import TableTransaction from "../Components/TableTransaction";
 // material ui
 import { Button, Grid } from "@material-ui/core";
+import ReactMuter from "../Components/ReactMuter";
 
 
 class Home extends Component {
@@ -18,7 +19,7 @@ class Home extends Component {
     await this.props.initializeLiff()
     const { profile } = await this.props
     console.log('profile detail', profile)
-    await this.props.getUserTransactions(profile.userId)
+    await this.props.getUserTransactions(profile.userId);
     
   }
 
@@ -29,8 +30,9 @@ class Home extends Component {
     console.log(this.props.statusMessage)
     return (
       <Fragment>
+        {/* <ReactMuter /> */}
         <AppBar />
-        <TableTransaction />>
+        <TableTransaction />
         <Grid
           container
           direction="row"

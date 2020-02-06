@@ -43,7 +43,7 @@ const getLiffData = () => {
   });
 }
 
-const apiPath = 'tukulsa-new-test.herokuapp.com'
+const apiPath = 'https://tukulsa-new-test.herokuapp.com'
 
 export const actions = store => ({
   // BASIC FUNCTION
@@ -77,12 +77,17 @@ export const actions = store => ({
   },
   // FUNCTIONS
   getUserTransactions: async (state, line_id) => {
-    const req = {
+    console.log('masuk get user transac')
+    const dataProfile = {
+      line_id
+    }
+    console.log(dataProfile)
+    const req = await {
       method: 'post',
       url: `${apiPath}/users/transactions/filterby`,
-      line_id: 'Uc38d44c9d7f172a98011fca096171acd'
+      data: dataProfile
     };
-    console.warn('cek req usertransactions', req);
+    console.log('cek req usertransactions', req);
     const self = store;
     await axios(req)
       .then(response => {
@@ -90,13 +95,13 @@ export const actions = store => ({
           listTransactions: response.data,
           isLoading: false
         });
-        console.log('get user transactions success', response.data);
+        console.log('masuk then', response.data);
       })
       .catch(error => {
         self.setState({
           isLoading: false
         });
-        console.log(error);
+        console.log('masuk error', error);
       });
   },
   initializeLiff: (store) => {

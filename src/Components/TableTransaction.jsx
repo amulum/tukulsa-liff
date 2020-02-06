@@ -3,23 +3,24 @@ import { connect } from 'unistore/react'
 import { actions } from '../store/store'
 import { withRouter } from 'react-router-dom'
 import { TableBody, TableCell, Table, TableContainer, TableRow, TableHead, Grid } from '@material-ui/core'
-import RowTable from './RowTable'
+import RowTable from './Loop/RowTable'
 
 
 
 const TableTransaction = (props) => {
   const loopRow = props.listTransactions.map((item, key) => {
-    let iconChangeColor = false
-    if (item.payment_status === item.order_status) {
-      iconChangeColor = true
+    let changeIcon = false
+    if (item.payment_status === "PAID" && item.order_status === 'SUCCESS') {
+      changeIcon = true
     }
-    console.log(item)
+    const colorIcon = changeIcon? 'green' : 'red'
     return (
       <RowTable 
         key={key}
         phoneNumber={item.phone_number}
         nominal={item.nominal}
-        iconChangeColor={iconChangeColor}
+        changeIcon={changeIcon}
+        colorIcon={colorIcon}
       />
       )    
   })
@@ -45,4 +46,4 @@ const TableTransaction = (props) => {
   )
 }
 
-export default connect('isLoggedIn, listTransactions', actions )(withRouter(TableTransaction))
+export default connect('isLoggedIn, listTransactions', actions)(withRouter(TableTransaction))
