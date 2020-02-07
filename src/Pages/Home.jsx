@@ -17,18 +17,23 @@ class Home extends Component {
     userId : ''
   }
    
-  componentDidMount = async () => {
+  componentWillMount = async () => {
     console.log('1')
     await this.props.initializeLiff()
     console.log('atas7 masuk did mount',this.props)
-    await this.setState({userId : this.props.userId})
+    await setTimeout(
+      this.setState({userId : this.props.userId}),2000
+    )
   }
   
-  componentWillReceiveProps = async () => {
+  componentDidMount = async () => {
     console.log('7')
     console.log('sblm masuk if userId', this.state.userId)
-    await this.props.getUserTransactions(this.state.userId);
+    await setTimeout(
+      this.props.getUserTransactions(this.state.userId),2000
+      )
   }
+  component
   render() {
     console.log('di render', this.props.userId)
     console.log('di render',this.props.displayName)
