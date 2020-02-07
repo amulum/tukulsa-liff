@@ -32,13 +32,17 @@ const getLiffData = async () => {
 
   // get profile
   await liff.getProfile().then(profile => {
-    const { userId, displayName, pictureUrl, statusMessage} = profile
-    store.setState({userId, displayName, pictureUrl, statusMessage})
+    store.setState({
+      userId: profile.userId,
+      displayName: profile.displayName,
+      pictureUrl: profile.pictureUrl,
+      statusMessage: profile.statusMessage
+    })
     console.log('6')
-    console.log('getprofile liff', userId)
-    console.log('getprofile liff', displayName)
-    console.log('getprofile liff', pictureUrl)
-    console.log('getprofile liff', statusMessage)
+    console.log('getprofile liff', store.getState("userId"))
+    console.log('getprofile liff', store.getState("displayName"))
+    console.log('getprofile liff', store.getState("pictureUrl"))
+    console.log('getprofile liff', store.getState("statusMessage"))
   })
   .catch((err) => {
     console.log('6 error')

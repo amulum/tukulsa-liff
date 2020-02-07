@@ -21,22 +21,22 @@ class Home extends Component {
     console.log('7')
     const { profile } = await this.props
     console.log('profile detail', profile)
-    console.log('sblm masuk if', this.props.userId)
+    console.log('sblm masuk if userId', this.props.userId)
     if (this.props.userId === '') {
-      console.log('8')
+      console.log('8 fail')
       await this.props.getUserTransactions('Uc38d44c9d7f172a98011fca096171acd');
     } else {
-      console.log('8')
+      console.log('8 ocee')
       await this.props.getUserTransactions(this.props.userId);
     }
     
   }
 
   render() {
-    console.log(this.props.userId)
-    console.log(this.props.displayName)
-    console.log(this.props.pictureUrl)
-    console.log(this.props.statusMessage)
+    console.log('di render', this.props.userId)
+    console.log('di render',this.props.displayName)
+    console.log('di render',this.props.pictureUrl)
+    console.log('di render',this.props.statusMessage)
     return (
       <Fragment>
         {/* <ReactMuter /> */}
