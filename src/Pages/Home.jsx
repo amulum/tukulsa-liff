@@ -37,9 +37,9 @@ class Home extends Component {
     console.log('di render',this.props.statusMessage)
     return (
       <Fragment>
-        <p>{this.props.userId}</p>
         {/* <ReactMuter /> */}
         <AppBar />
+        <p>{this.props.userId}</p>
         <TableTransaction />
         {this.props.isLoggedIn?
         null
