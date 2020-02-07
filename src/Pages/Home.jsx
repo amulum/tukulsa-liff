@@ -17,11 +17,13 @@ class Home extends Component {
   componentDidMount = async () => {
     console.log('1')
     await this.props.initializeLiff()
-    console.log('masuk did mount',this.props)
+    console.log('atas7 masuk did mount',this.props)
     console.log('7')
     const { profile } = await this.props
     console.log('profile detail', profile)
+    console.log('sblm masuk if', this.props.userId)
     if (this.props.userId === '') {
+      console.log('8')
       await this.props.getUserTransactions('Uc38d44c9d7f172a98011fca096171acd');
     } else {
       console.log('8')
@@ -39,11 +41,10 @@ class Home extends Component {
       <Fragment>
         {/* <ReactMuter /> */}
         <AppBar />
+        <TableTransaction />
+        <BottomNav />
         {this.props.isLoggedIn?
-        <Fragment>
-          <TableTransaction />
-          <BottomNav />
-        </Fragment>
+        null
         :
         <Fragment >
 

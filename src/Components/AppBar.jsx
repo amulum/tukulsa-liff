@@ -13,7 +13,7 @@ import Avatar from '@material-ui/core/Avatar';
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    backgroundColor: '#e89292'
+    backgroundColor: '#d9e9e9'
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -78,12 +78,12 @@ function MenuAppBar(props) {
             </Grid>
             {/* logo tukulsa */}
             <Grid item xs={12} justify="center">
-                <img src={require("../images/tukulsalogo-bg-none.png")} alt="tukulsalogo"/>
-            </Grid>
-            <Grid item xs={12} justify="center">
               <Typography variant="h5" className={classes.title}>
                 Riwayat Transaksi
               </Typography>
+            </Grid>
+            <Grid item xs={12} justify="center">
+                <img src={require("../images/tukulsalogo-bg-none.png")} alt="tukulsalogo"/>
             </Grid>
           </Grid>
         </Toolbar>
