@@ -82,8 +82,8 @@ function MenuAppBar(props) {
                 Riwayat Transaksi
               </Typography>
             </Grid>
-            <Grid item xs={12} justify="center">
-                <img src={require("../images/tukulsalogo-bg-none.png")} alt="tukulsalogo"/>
+            <Grid container xs={12} justify="center">
+                <img src={require("../images/tukulsalogo-bg-none.png")} alt="tukulsalogo" style={{maxWidth:"80%", maxHeight:"40%"}}/>
             </Grid>
           </Grid>
         </Toolbar>

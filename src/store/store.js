@@ -46,8 +46,9 @@ const getLiffData = async () => {
   });
 }
 
-const apiPath = 'https://tukulsa-new-test.herokuapp.com'
-
+// testing = 'https://tukulsa-new-test.herokuapp.com'
+// prod = 'https://tukulsa-prod.herokuapp.com'
+const apiPath = 'https://tukulsa-prod.herokuapp.com'
 export const actions = store => ({
   // BASIC FUNCTION
   setInput: (store, event) => {
