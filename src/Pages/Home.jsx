@@ -19,8 +19,6 @@ class Home extends Component {
     await this.props.initializeLiff()
     console.log('atas7 masuk did mount',this.props)
     console.log('7')
-    const { profile } = await this.props
-    console.log('profile detail', profile)
     console.log('sblm masuk if userId', this.props.userId)
     if (this.props.userId === '') {
       console.log('8 fail')
@@ -42,7 +40,6 @@ class Home extends Component {
         {/* <ReactMuter /> */}
         <AppBar />
         <TableTransaction />
-        <BottomNav />
         {this.props.isLoggedIn?
         null
         :
@@ -68,6 +65,7 @@ class Home extends Component {
         </div>
         </Fragment>
         }
+        <BottomNav />
       </Fragment>
     )
   }
