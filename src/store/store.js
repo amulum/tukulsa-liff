@@ -19,36 +19,6 @@ const initialState = {
 };
 export const store = createStore(initialState);
 
-// LIFF FUNCTION 
-const getLiffData = async () => {
-  console.log('5')
-  await store.setState({
-    language: liff.getLanguage(),
-    OS: liff.getOS(),
-    version: liff.getVersion(),
-    isInClient: liff.isInClient(),
-    isLoggedIn: liff.isLoggedIn(),
-  })
-
-  // get profile
-  await liff.getProfile().then(profile => {
-    store.setState({
-      userId: profile.userId,
-      displayName: profile.displayName,
-      pictureUrl: profile.pictureUrl,
-      statusMessage: profile.statusMessage
-    })
-    console.log('6')
-    console.log('getprofile liff', store.getState("userId"))
-    console.log('getprofile liff', store.getState("displayName"))
-    console.log('getprofile liff', store.getState("pictureUrl"))
-    console.log('getprofile liff', store.getState("statusMessage"))
-  })
-  .catch((err) => {
-    console.log('6 error')
-    console.log('error', err);
-  });
-}
 
 // testing = 'https://tukulsa-new-test.herokuapp.com'
 // prod = 'https://tukulsa-prod.herokuapp.com'
@@ -112,11 +82,11 @@ export const actions = store => ({
         console.log('masuk error', error);
       });
   },
-  initializeLiff: async (state) => {
+  initializeLiff: (state) => {
     // const myLiffId = process.env.MY_LIFF_ID;
     console.log('2')
     console.log('masuk initializeLiff')
-    await liff
+    liff
       .init({
         liffId: "1653826903-Adz5znvw" // use own liffId
       })
@@ -124,12 +94,33 @@ export const actions = store => ({
         // Start to use liff's api
         console.log('3')
         console.log('masuk initializeApp')
-        getLiffData();
-        if (liff.isLoggedIn()) {
+        console.log('5')
+        store.setState({
+          language: liff.getLanguage(),
+          OS: liff.getOS(),
+          version: liff.getVersion(),
+          isInClient: liff.isInClient(),
+          isLoggedIn: liff.isLoggedIn(),
+        })
+
+        // get profile
+        liff.getProfile().then(profile => {
           store.setState({
-            isLoggedIn: true
-          });
-        }
+            userId: profile.userId,
+            displayName: profile.displayName,
+            pictureUrl: profile.pictureUrl,
+            statusMessage: profile.statusMessage
+          })
+          console.log('6')
+          console.log('getprofile liff', store.getState("userId"))
+          console.log('getprofile liff', store.getState("displayName"))
+          console.log('getprofile liff', store.getState("pictureUrl"))
+          console.log('getprofile liff', store.getState("statusMessage"))
+        })
+        .catch((err) => {
+          console.log('6 error')
+          console.log('error', err);
+        });
       })
       .catch((err) => {
         // Error happens during initialization

@@ -61,18 +61,11 @@ function MenuAppBar(props) {
             <Grid item xs={2}>
               {auth && (
                 <div>
-                  <IconButton
-                    aria-label="account of current user"
-                    aria-controls="menu-appbar"
-                    aria-haspopup="true"
-                    color="inherit"
-                  >
                     {props.pictureUrl === ''?
                       <Avatar alt="cobain" src={props.pictureUrl} />
                     :
                       <AccountCircle />
                     }
-                  </IconButton>
                 </div>
               )}
             </Grid>
