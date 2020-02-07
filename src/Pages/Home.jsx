@@ -20,13 +20,7 @@ class Home extends Component {
     console.log('atas7 masuk did mount',this.props)
     console.log('7')
     console.log('sblm masuk if userId', this.props.userId)
-    if (this.props.userId === '') {
-      console.log('8 fail')
-      await this.props.getUserTransactions('Uc38d44c9d7f172a98011fca096171acd');
-    } else {
-      console.log('8 ocee')
-      await this.props.getUserTransactions(this.props.userId);
-    }
+    await this.props.getUserTransactions(this.props.userId);
     
   }
 
