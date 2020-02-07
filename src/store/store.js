@@ -88,7 +88,7 @@ export const actions = store => ({
     console.log('masuk initializeLiff')
     liff
       .init({
-        liffId: "1653826903-Adz5znvw" // use own liffId
+        liffId: "1653837101-NwEQEqV9" // use own liffId
       })
       .then(() => {
         // Start to use liff's api
