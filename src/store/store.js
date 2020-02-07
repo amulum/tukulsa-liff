@@ -22,7 +22,7 @@ export const store = createStore(initialState);
 
 // testing = 'https://tukulsa-new-test.herokuapp.com'
 // prod = 'https://tukulsa-prod.herokuapp.com'
-const apiPath = 'https://tukulsa-prod.herokuapp.com'
+const apiPath = 'https://tukulsa.site'
 export const actions = store => ({
   // BASIC FUNCTION
   setInput: (store, event) => {
