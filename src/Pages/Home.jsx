@@ -22,12 +22,13 @@ class Home extends Component {
     await this.props.initializeLiff()
     console.log('atas7 masuk did mount',this.props)
     await this.setState({userId : this.props.userId})
+  }
+  
+  componentWillReceiveProps = async () => {
     console.log('7')
     console.log('sblm masuk if userId', this.state.userId)
     await this.props.getUserTransactions(this.state.userId);
-    
   }
-
   render() {
     console.log('di render', this.props.userId)
     console.log('di render',this.props.displayName)
