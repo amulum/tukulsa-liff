@@ -13,14 +13,18 @@ import ReactMuter from "../Components/ReactMuter";
 
 
 class Home extends Component {
+  state = {
+    userId : ''
+  }
    
   componentDidMount = async () => {
     console.log('1')
     await this.props.initializeLiff()
     console.log('atas7 masuk did mount',this.props)
+    await this.setState({userId : this.props.userId})
     console.log('7')
-    console.log('sblm masuk if userId', this.props.userId)
-    await this.props.getUserTransactions(this.props.userId);
+    console.log('sblm masuk if userId', this.state.userId)
+    await this.props.getUserTransactions(this.state.userId);
     
   }
 
