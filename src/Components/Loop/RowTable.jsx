@@ -18,7 +18,7 @@ function RowTable (props)  {
     },
   }));
   const classes = useStyles();
-  const message = `hallooo ${props.displayName}, userId kamuu: ${props.userId}`
+  const message = `cek transaksi ${props.orderId}`
   return (
       <Fragment>
         {/* <Link onClick={(message) => props.getDetails(message)}> */}

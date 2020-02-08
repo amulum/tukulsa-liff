@@ -24,6 +24,7 @@ const TableTransaction = (props) => {
         key={key}
         phoneNumber={item.phone_number}
         nominal={item.nominal}
+        orderId={item.order_id}
         changeIcon={changeIcon}
         colorIcon={colorIcon}
         getDetails={props.getDetails}
