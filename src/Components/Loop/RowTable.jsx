@@ -18,10 +18,11 @@ function RowTable (props)  {
     },
   }));
   const classes = useStyles();
+  const message = `hallooo ${props.displayName}, userId kamuu: ${props.userId}`
   return (
       <Fragment>
         {/* <Link onClick={(message) => props.getDetails(message)}> */}
-        <Button fullWidth onClick={() => props.getDetails('cobain ini ae')}>
+        <Button fullWidth onClick={() => props.getDetails(message)}>
           {/* <Grid container xs={12}> */}
             <Grid item xs={3} className={classes.status} style={{textAlign: "center"}} >
               {props.changeIcon? <CheckCircleIcon /> : <CancelIcon />}
@@ -48,4 +49,4 @@ function RowTable (props)  {
   )
 }
 
-export default connect('isLoggedIn, listTransactions, userId', actions)(withRouter(RowTable))
+export default connect('isLoggedIn, listTransactions, userId, displayName', actions)(withRouter(RowTable))
