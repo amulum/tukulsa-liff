@@ -41,13 +41,9 @@ class Home extends Component {
         {/* <ReactMuter /> */}
         <AppBar />
         <p>{this.props.userId}</p>
-        {this.props.isLoading?
-          <p>Loading cuy</p>
-        :
           <TableTransaction 
           getDetails={(messages)=> this.handleSendMessage(messages)}
         />
-        }
         {this.props.isLoggedIn?
         null
         :

@@ -53,7 +53,15 @@ const TableTransaction = (props) => {
             Nominal
           </Typography>
         </Grid>
-          {loopRow}
+        {this.props.isLoading?
+        <Grid item xs={12}>
+          <Typography variant="subtitle1" className={classes.padding} style={{textAlign: "center"}}>
+            Loading cuy
+          </Typography>
+        </Grid>
+        :
+          loopRow
+        }
           {/* <TableContainer style={{border:'0'}}>
             <Table stickyHeader style={{border:'0'}} >
               <TableHead>
