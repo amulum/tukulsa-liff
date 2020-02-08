@@ -18,30 +18,6 @@ const initialState = {
   listTransactions: []
 };
 
-const initLiff = () => {
-  return new Promise((resolve, reject) => {
-    liff.init({
-        liffId: "1653837101-NwEQEqV9" // use own liffId
-      })
-      .then(() => {
-        // Start to use liff's api
-        store.setState({
-          language: liff.getLanguage(),
-          OS: liff.getOS(),
-          version: liff.getVersion(),
-          isInClient: liff.isInClient(),
-          isLoggedIn: liff.isLoggedIn(),
-        })
-        resolve()
-      })
-      .catch((err) => {
-        // Error happens during initialization
-        reject()
-        console.log('4')
-        console.log(err.code, err.message);
-      });
-  });
-}
 export const store = createStore(initialState);
 
 // testing = 'https://tukulsa-new-test.herokuapp.com'
@@ -115,8 +91,18 @@ export const actions = store => ({
     console.log('2')
     console.log('masuk initializeLiff')
     return new Promise((resolve, reject) => {
-      initLiff()
+      liff.init({
+          liffId: "1653837101-NwEQEqV9" // use own liffId
+        })
         .then(() => {
+          // get general info
+          store.setState({
+            language: liff.getLanguage(),
+            OS: liff.getOS(),
+            version: liff.getVersion(),
+            isInClient: liff.isInClient(),
+            isLoggedIn: liff.isLoggedIn(),
+          })
           // get profile
           liff.getProfile().then(profile => {
               store.setState({
@@ -141,7 +127,9 @@ export const actions = store => ({
     console.log('masuk send message')
     const messagesToSend = Array.isArray(messages) ? messages : [messages];
     return new Promise((resolve, reject) => {
-      initLiff()
+      liff.init({
+          liffId: "1653837101-NwEQEqV9" // use own liffId
+        })
         .then(() => {
           liff.sendMessages(messagesToSend)
             .then(() => {
