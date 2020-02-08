@@ -41,9 +41,13 @@ class Home extends Component {
         {/* <ReactMuter /> */}
         <AppBar />
         <p>{this.props.userId}</p>
-        <TableTransaction 
+        {this.props.isLoading?
+          <p>Loading cuy</p>
+        :
+          <TableTransaction 
           getDetails={(messages)=> this.handleSendMessage(messages)}
         />
+        }
         {this.props.isLoggedIn?
         null
         :
@@ -69,7 +73,9 @@ class Home extends Component {
         </div>
         </Fragment>
         }
-        <BottomNav />
+        <Button onClick={()=>this.props.getUserTransactions('U0c42265e3ba13d4583bfdb21fbd22cf4')} >
+
+        </Button>
       </Fragment>
     )
   }

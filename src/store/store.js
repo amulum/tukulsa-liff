@@ -130,10 +130,9 @@ export const actions = store => ({
   },
   sendMessages: (state, messages) => {
     console.log('masuk sendMessages')
-    const messagesToSend = Array.isArray(messages) ? messages : [messages];
     liff.sendMessages([{
         type: 'text',
-        text: `${messagesToSend}`
+        text: `${messages}`
       }])
       .then(() => {
         console.log('message sent');
