@@ -53,7 +53,7 @@ const TableTransaction = (props) => {
             Nominal
           </Typography>
         </Grid>
-        {this.props.isLoading?
+        {props.isLoading?
         <Grid item xs={12}>
           <Typography variant="subtitle1" className={classes.padding} style={{textAlign: "center"}}>
             Loading cuy
@@ -81,4 +81,4 @@ const TableTransaction = (props) => {
   )
 }
 
-export default connect('isLoggedIn, listTransactions', actions)(withRouter(TableTransaction))
+export default connect('isLoading, isLoggedIn, listTransactions', actions)(withRouter(TableTransaction))
