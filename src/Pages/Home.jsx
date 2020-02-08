@@ -13,10 +13,6 @@ import ReactMuter from "../Components/ReactMuter";
 
 
 class Home extends Component {
-  // handleSendMessage = async (messages) => {
-  //   await this.props.sendMessages(messages)
-  //   await this.props.closeWindow()
-  // }
    
   componentDidMount = async () => {
     console.log('1')
@@ -41,9 +37,7 @@ class Home extends Component {
         {/* <ReactMuter /> */}
         <AppBar />
         <p>{this.props.userId}</p>
-        <TableTransaction 
-          // getDetails={this.handleSendMessage}
-        />
+        <TableTransaction />
         {this.props.isLoggedIn?
         null
         :
