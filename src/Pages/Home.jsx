@@ -20,6 +20,7 @@ class Home extends Component {
     console.log('atas7 masuk did mount',this.props)
   }
   handleSendMessage = async (messages) => {
+    console.log('masuk handle send message', messages)
     await this.props.sendMessages(messages)
     await this.props.closeWindow()
   }
@@ -42,7 +43,7 @@ class Home extends Component {
         <AppBar />
         <p>{this.props.userId}</p>
           <TableTransaction 
-          getDetails={(messages)=> this.handleSendMessage(messages)}
+          getDetails={this.handleSendMessage}
         />
         {this.props.isLoggedIn?
         null

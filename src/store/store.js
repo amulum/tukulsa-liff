@@ -129,7 +129,7 @@ export const actions = store => ({
       });
   },
   sendMessages: (state, messages) => {
-    console.log('masuk sendMessages')
+    console.log('masuk sendMessages store', messages)
     liff.sendMessages([{
         type: 'text',
         text: `${messages}`
