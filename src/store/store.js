@@ -21,8 +21,25 @@ const initialState = {
 const initLiff = () => {
   return new Promise((resolve, reject) => {
     liff.init({
-      liffId: "1653837101-NwEQEqV9" // use own liffId
-    })
+        liffId: "1653837101-NwEQEqV9" // use own liffId
+      })
+      .then(() => {
+        // Start to use liff's api
+        store.setState({
+          language: liff.getLanguage(),
+          OS: liff.getOS(),
+          version: liff.getVersion(),
+          isInClient: liff.isInClient(),
+          isLoggedIn: liff.isLoggedIn(),
+        })
+        resolve()
+      })
+      .catch((err) => {
+        // Error happens during initialization
+        reject()
+        console.log('4')
+        console.log(err.code, err.message);
+      });
   });
 }
 export const store = createStore(initialState);
@@ -100,15 +117,6 @@ export const actions = store => ({
     return new Promise((resolve, reject) => {
       initLiff()
         .then(() => {
-          // Start to use liff's api
-          store.setState({
-            language: liff.getLanguage(),
-            OS: liff.getOS(),
-            version: liff.getVersion(),
-            isInClient: liff.isInClient(),
-            isLoggedIn: liff.isLoggedIn(),
-          })
-
           // get profile
           liff.getProfile().then(profile => {
               store.setState({
