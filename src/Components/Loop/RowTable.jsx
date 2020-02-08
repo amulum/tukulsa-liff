@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
 import { connect } from 'unistore/react'
 import { actions } from '../../store/store'
-import { withRouter, Link } from 'react-router-dom'
-import { TableRow, TableCell, makeStyles, Grid, Typography, Button } from '@material-ui/core'
+import { withRouter } from 'react-router-dom'
+import { makeStyles, Grid, Typography, Button } from '@material-ui/core'
 // ICONS
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CancelIcon from '@material-ui/icons/Cancel';

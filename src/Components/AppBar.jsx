@@ -3,8 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import { connect, actions } from 'unistore/react';
 import { withRouter } from 'react-router-dom'
 import { Grid } from '@material-ui/core';
@@ -30,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 
 function MenuAppBar(props) {
   const classes = useStyles();
-  const [auth] = React.useState(true);
+  // const [auth] = React.useState(true);
   // const [anchorEl, setAnchorEl] = React.useState(null);
   // const open = Boolean(anchorEl);
 
