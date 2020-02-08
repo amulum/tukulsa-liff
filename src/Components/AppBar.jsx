@@ -12,14 +12,12 @@ import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
     backgroundColor: '#d9e9e9'
   },
   menuButton: {
     marginRight: theme.spacing(2),
   },
   title: {
-    flexGrow: 1,
     textAlign: 'center',
     marginBottom: '10px',
     color : '#2c6553'
@@ -52,22 +50,18 @@ function MenuAppBar(props) {
     <Fragment>
       <AppBar position="static" className={classes.root}>
         <Toolbar>
-          <Grid container alignItems="center">
+          <Grid container alignItems="center" spacing={2} style={{marginTop:"0.5%"}}>
             <Grid item xs={10} className={classes.hello}>
               <Typography >
-                Hi {props.displayName === '' ? 'kamuu' : props.displayName}
+                Hallooohhh, {props.isLoading? 'cuy' : props.displayName}
               </Typography>
             </Grid>
-            <Grid item xs={2}>
-              {auth && (
-                <div>
-                    {props.pictureUrl === ''?
-                      <Avatar alt="cobain" src={props.pictureUrl} />
-                    :
-                      <AccountCircle />
-                    }
-                </div>
-              )}
+            <Grid item xs={2} alignItems="ce">
+              {props.isLoading?
+                <Avatar alt="cobain" src={`${props.pictureUrl}`} />
+              :
+                <Avatar alt="cobain" src={`${props.pictureUrl}`} />
+              }
             </Grid>
             {/* logo tukulsa */}
             <Grid item xs={12} justify="center">
@@ -84,4 +78,4 @@ function MenuAppBar(props) {
     </Fragment>
   );
 }
-export default connect('isLoggedIn, displayName, pictureUrl', actions)(withRouter(MenuAppBar))
+export default connect('isLoggedIn, displayName, pictureUrl, isLoading', actions)(withRouter(MenuAppBar))

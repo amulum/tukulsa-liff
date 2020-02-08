@@ -41,11 +41,10 @@ class Home extends Component {
       <Fragment>
         {/* <ReactMuter /> */}
         <AppBar />
-        <p>{this.props.userId}</p>
-          <TableTransaction 
+        <TableTransaction 
           getDetails={this.handleSendMessage}
         />
-        {this.props.isLoggedIn?
+        {this.props.isInClient?
         null
         :
         <Fragment >
@@ -71,7 +70,6 @@ class Home extends Component {
         </Fragment>
         }
         <Button onClick={()=>this.props.getUserTransactions('U0c42265e3ba13d4583bfdb21fbd22cf4')} >
-
         </Button>
       </Fragment>
     )
