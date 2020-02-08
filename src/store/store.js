@@ -39,14 +39,14 @@ export const actions = store => ({
   setManyChanges: (store, dict) => {
     store.setState(dict)
   },
-  handleLoginLine : async ()  => {
+  handleLoginLine: async () => {
     const liff = await window.liff
     if (!initialState.isLoggedIn) {
       // set `redirectUri` to redirect the user to a URL other than the front page of your LIFF app.
       await liff.login();
     }
   },
-  handleLogoutLine : async ()  => {
+  handleLogoutLine: async () => {
     const liff = await window.liff
     if (initialState.isLoggedIn) {
       await liff.logout();
@@ -105,22 +105,22 @@ export const actions = store => ({
 
         // get profile
         liff.getProfile().then(profile => {
-          store.setState({
-            userId: profile.userId,
-            displayName: profile.displayName,
-            pictureUrl: profile.pictureUrl,
-            statusMessage: profile.statusMessage
+            store.setState({
+              userId: profile.userId,
+              displayName: profile.displayName,
+              pictureUrl: profile.pictureUrl,
+              statusMessage: profile.statusMessage
+            })
+            console.log('6')
+            console.log('getprofile liff', initialState.userId)
+            console.log('getprofile liff', initialState.displayName)
+            console.log('getprofile liff', initialState.pictureUrl)
+            console.log('getprofile liff', initialState.statusMessage)
           })
-          console.log('6')
-          console.log('getprofile liff', store.getState("userId"))
-          console.log('getprofile liff', store.getState("displayName"))
-          console.log('getprofile liff', store.getState("pictureUrl"))
-          console.log('getprofile liff', store.getState("statusMessage"))
-        })
-        .catch((err) => {
-          console.log('6 error')
-          console.log('error', err);
-        });
+          .catch((err) => {
+            console.log('6 error')
+            console.log('error', err);
+          });
       })
       .catch((err) => {
         // Error happens during initialization

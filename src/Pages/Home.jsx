@@ -13,32 +13,25 @@ import ReactMuter from "../Components/ReactMuter";
 
 
 class Home extends Component {
-  state = {
-    userId : ''
-  }
    
-  componentWillMount = async () => {
+  componentDidMount = async () => {
     console.log('1')
     await this.props.initializeLiff()
     console.log('atas7 masuk did mount',this.props)
-    await setTimeout(
-      this.setState({userId : this.props.userId}),2000
-    )
   }
-  
-  componentDidMount = async () => {
-    console.log('7')
-    console.log('sblm masuk if userId', this.state.userId)
-    await setTimeout(
-      this.props.getUserTransactions(this.state.userId),2000
-      )
-  }
-  component
   render() {
     console.log('di render', this.props.userId)
     console.log('di render',this.props.displayName)
     console.log('di render',this.props.pictureUrl)
     console.log('di render',this.props.statusMessage)
+    if (this.props.userId === '') {
+      console.log('masuk if none')
+      this.props.getUserTransactions('U0c42265e3ba13d4583bfdb21fbd22cf4')
+    } else {
+      console.log('masuk else')
+      this.props.getUserTransactions(this.props.userId)
+    }
+
     return (
       <Fragment>
         {/* <ReactMuter /> */}
