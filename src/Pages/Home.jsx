@@ -19,6 +19,10 @@ class Home extends Component {
     await this.props.initializeLiff()
     console.log('atas7 masuk did mount',this.props)
   }
+  handleSendMessage = async (messages) => {
+    await this.props.sendMessages(messages)
+    await this.props.closeWindow()
+  }
   render() {
     console.log('di render', this.props.userId)
     console.log('di render',this.props.displayName)
@@ -37,7 +41,9 @@ class Home extends Component {
         {/* <ReactMuter /> */}
         <AppBar />
         <p>{this.props.userId}</p>
-        <TableTransaction />
+        <TableTransaction 
+          getDetails={this.handleSendMessage}
+        />
         {this.props.isLoggedIn?
         null
         :
