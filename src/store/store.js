@@ -4,7 +4,7 @@ import axios from 'axios'
 const liff = window.liff
 
 const initialState = {
-  test: '',
+  isLoading: '',
   language: '',
   OS: '',
   version: '',
@@ -131,25 +131,15 @@ export const actions = store => ({
   sendMessages: (state, messages) => {
     console.log('masuk sendMessages')
     const messagesToSend = Array.isArray(messages) ? messages : [messages];
-    liff
-      .init({
-        liffId: "1653837101-NwEQEqV9" // use own liffId
-      })
+    liff.sendMessages([{
+        type: 'text',
+        text: `${messagesToSend}`
+      }])
       .then(() => {
-        // Start to use liff's api
-        liff.sendMessages(messagesToSend)
-          .then(() => {
-            console.log('message sent', messagesToSend)
-          })
-          .catch((err) => {
-            console.log('6 error')
-            console.log('error', err);
-          });
+        console.log('message sent');
       })
       .catch((err) => {
-        // Error happens during initialization
-        console.log('4')
-        console.log(err.code, err.message);
+        console.log('error', err);
       });
   },
   closeWindow: (state) => {

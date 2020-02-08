@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { withRouter } from 'react-router-dom'
 // import ReactMuter from "../Components/ReactMuter";
 import { connect } from "unistore/react";
-import { actions } from "../store/store";
+import { actions, store } from "../store/store";
 // import component
 import BottomNav from "../Components/BottomNav"
 import AppBar from "../Components/AppBar";
@@ -30,7 +30,7 @@ class Home extends Component {
     console.log('di render',this.props.statusMessage)
     if (this.props.userId === '') {
       console.log('masuk if none')
-      this.props.getUserTransactions('U0c42265e3ba13d4583bfdb21fbd22cf4')
+      store.setState({isLoading: true})
     } else {
       console.log('masuk else')
       this.props.getUserTransactions(this.props.userId)
@@ -75,4 +75,4 @@ class Home extends Component {
   }
 }
 
-export default connect('isLoggedIn, userId, displayName, pictureUrl, statusMessage', actions) (withRouter(Home));
+export default connect('isLoading, isLoggedIn, userId, displayName, pictureUrl, statusMessage', actions) (withRouter(Home));
