@@ -17,8 +17,8 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     textAlign: 'center',
-    marginBottom: '10px',
-    color : '#2c6553'
+    color : '#2c6553',
+    padding: 0
   },
   hello : {
     textAlign: 'right',
@@ -62,13 +62,13 @@ function MenuAppBar(props) {
               }
             </Grid>
             {/* logo tukulsa */}
-            <Grid item xs={12} justify="center">
-              <Typography variant="h5" className={classes.title}>
-                Riwayat Transaksi
+            <Grid item xs={12} justify="center" style={{padding: 0}}>
+              <Typography variant="h6" className={classes.title} bold>
+                RIWAYAT TRANSAKSI
               </Typography>
             </Grid>
             <Grid container xs={12} justify="center">
-                <img src={require("../images/tukulsalogo-bg-none.png")} alt="tukulsalogo" style={{maxWidth:"80%", maxHeight:"40%"}}/>
+                <img src={require("../images/tukulsalogo-bg-none.png")} alt="tukulsalogo" style={{maxWidth:"80%", maxHeight:"40%", marginBottom:"0.5em"}}/>
             </Grid>
           </Grid>
         </Toolbar>

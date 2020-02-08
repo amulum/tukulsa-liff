@@ -4,7 +4,7 @@ import axios from 'axios'
 const liff = window.liff
 
 const initialState = {
-  isLoading: '',
+  isLoading: true,
   language: '',
   OS: '',
   version: '',

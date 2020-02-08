@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'unistore/react'
 import { actions } from '../store/store'
 import { withRouter } from 'react-router-dom'
-import { Grid, makeStyles, Typography} from '@material-ui/core'
+import { Grid, makeStyles, Typography, Button } from '@material-ui/core'
 import RowTable from './Loop/RowTable'
+import LoadingRow from './Loop/LoadingRow'
 
 const useStyles = makeStyles(theme => ({
   padding : {
@@ -38,46 +39,32 @@ const TableTransaction = (props) => {
       justify="center"
       alignItems="center"
     >
-      {/* <Grid item xs={12}> */}
+      <Button disable fullWidth>
         <Grid item xs={3}>
-          <Typography variant="subtitle1" className={classes.padding} style={{textAlign: "center"}}>
+          <Typography variant="subtitle1" className={classes.padding} style={{textAlign: "center", fontWeight:'600'}}>
             Status
           </Typography>
         </Grid>
         <Grid item xs={5}>
-          <Typography variant="subtitle1" className={classes.padding} style={{textAlign: "center"}}>
+          <Typography variant="subtitle1" className={classes.padding} style={{textAlign: "center", fontWeight:'600'}}>
             Nomor
           </Typography>
         </Grid>
         <Grid item xs={4}>
-          <Typography variant="subtitle1" className={classes.padding} style={{textAlign: "center"}}>
+          <Typography variant="subtitle1" className={classes.padding} style={{textAlign: "center", fontWeight:'600'}}>
             Nominal
           </Typography>
         </Grid>
-        {props.isLoading?
-        <Grid item xs={12}>
-          <Typography variant="subtitle1" className={classes.padding} style={{textAlign: "center"}}>
-            Loading cuy
-          </Typography>
-        </Grid>
-        :
-          loopRow
-        }
-          {/* <TableContainer style={{border:'0'}}>
-            <Table stickyHeader style={{border:'0'}} >
-              <TableHead>
-                <TableRow>
-                  <TableCell size="small" align="center" >Status</TableCell>
-                  <TableCell size="small" align="center" >Nomor</TableCell>
-                  <TableCell size="small" align="center"> Nominal</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {loopRow}
-              </TableBody>
-            </Table>
-          </TableContainer> */}
-        {/* </Grid>  */}
+      </Button>
+      {props.isLoading?
+      <Fragment >
+        <LoadingRow />
+        <LoadingRow />
+        <LoadingRow />
+      </Fragment>
+      : 
+        loopRow
+      }
     </Grid>
   )
 }
