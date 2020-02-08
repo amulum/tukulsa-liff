@@ -90,59 +90,55 @@ export const actions = store => ({
     // const myLiffId = process.env.MY_LIFF_ID;
     console.log('2')
     console.log('masuk initializeLiff')
-    return new Promise((resolve, reject) => {
-      liff.init({
-          liffId: "1653837101-NwEQEqV9" // use own liffId
+    liff.init({
+        liffId: "1653837101-NwEQEqV9" // use own liffId
+      })
+      .then(() => {
+        // get general info
+        store.setState({
+          language: liff.getLanguage(),
+          OS: liff.getOS(),
+          version: liff.getVersion(),
+          isInClient: liff.isInClient(),
+          isLoggedIn: liff.isLoggedIn(),
         })
-        .then(() => {
-          // get general info
-          store.setState({
-            language: liff.getLanguage(),
-            OS: liff.getOS(),
-            version: liff.getVersion(),
-            isInClient: liff.isInClient(),
-            isLoggedIn: liff.isLoggedIn(),
-          })
-          // get profile
-          liff.getProfile().then(profile => {
-              store.setState({
-                userId: profile.userId,
-                displayName: profile.displayName,
-                pictureUrl: profile.pictureUrl,
-                statusMessage: profile.statusMessage
-              })
+        // get profile
+        liff.getProfile().then(profile => {
+            store.setState({
+              userId: profile.userId,
+              displayName: profile.displayName,
+              pictureUrl: profile.pictureUrl,
+              statusMessage: profile.statusMessage
             })
-            .catch((err) => {
-              console.log('error', err);
-            });
-        })
-        .catch((err) => {
-          // Error happens during initialization
-          console.log('4')
-          console.log(err.code, err.message);
-        });
-    });
+          })
+          .catch((err) => {
+            console.log('error', err);
+          });
+      })
+      .catch((err) => {
+        // Error happens during initialization
+        console.log('4')
+        console.log(err.code, err.message);
+      });
   },
   sendMessageLiff: (store, messages) => {
     console.log('masuk send message')
     const messagesToSend = Array.isArray(messages) ? messages : [messages];
-    return new Promise((resolve, reject) => {
-      liff.init({
-          liffId: "1653837101-NwEQEqV9" // use own liffId
-        })
-        .then(() => {
-          liff.sendMessages(messagesToSend)
-            .then(() => {
-              resolve();
-            })
-            .catch((err) => {
-              reject(err);
-            });
-        })
-        .catch((err) => {
-          console.log('masuk error send message', err)
-          reject(err);
-        });
-    });
+    liff.init({
+        liffId: "1653837101-NwEQEqV9" // use own liffId
+      })
+      .then(() => {
+        liff.sendMessages(messagesToSend)
+          .then(() => {
+            resolve();
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      })
+      .catch((err) => {
+        console.log('masuk error send message', err)
+        reject(err);
+      });
   }
 })
