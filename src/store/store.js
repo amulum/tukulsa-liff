@@ -130,15 +130,14 @@ export const actions = store => ({
       .then(() => {
         liff.sendMessages(messagesToSend)
           .then(() => {
-            resolve();
+            console.log('send message success')
           })
           .catch((err) => {
-            reject(err);
+            console.log('send message error', err)
           });
       })
       .catch((err) => {
         console.log('masuk error send message', err)
-        reject(err);
       });
   }
 })
