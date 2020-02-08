@@ -42,7 +42,7 @@ class Home extends Component {
         <AppBar />
         <p>{this.props.userId}</p>
         <TableTransaction 
-          getDetails={()=> this.handleSendMessage()}
+          getDetails={(messages)=> this.handleSendMessage(messages)}
         />
         {this.props.isLoggedIn?
         null
