@@ -21,7 +21,7 @@ function RowTable (props)  {
   return (
       <Fragment>
         {/* <Link onClick={(message) => props.getDetails(message)}> */}
-        <Button fullWidth onClick={(messages) => props.getDetails(messages, props.userId)}>
+        <Button fullWidth onClick={() => props.getDetails('cobain ini ae')}>
           {/* <Grid container xs={12}> */}
             <Grid item xs={3} className={classes.status} style={{textAlign: "center"}} >
               {props.changeIcon? <CheckCircleIcon /> : <CancelIcon />}
