@@ -127,5 +127,32 @@ export const actions = store => ({
         console.log('4')
         console.log(err.code, err.message);
       });
+  },
+  sendMessages: (state, messages) => {
+    console.log('masuk sendMessages')
+    const messagesToSend = Array.isArray(messages) ? messages : [messages];
+    liff
+      .init({
+        liffId: "1653837101-NwEQEqV9" // use own liffId
+      })
+      .then(() => {
+        // Start to use liff's api
+        liff.sendMessages(messagesToSend)
+          .then(() => {
+            console.log('message sent', messagesToSend)
+          })
+          .catch((err) => {
+            console.log('6 error')
+            console.log('error', err);
+          });
+      })
+      .catch((err) => {
+        // Error happens during initialization
+        console.log('4')
+        console.log(err.code, err.message);
+      });
+  },
+  closeWindow: (state) => {
+    liff.closeWindow()
   }
 })
