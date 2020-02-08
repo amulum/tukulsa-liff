@@ -18,11 +18,10 @@ function RowTable (props)  {
     },
   }));
   const classes = useStyles();
-  const messages = `Hi ${props.userId}`
   return (
       <Fragment>
         {/* <Link onClick={(message) => props.getDetails(message)}> */}
-        <Button fullWidth onClick={(messages) => props.getDetails(messages)}>
+        <Button fullWidth onClick={(messages) => props.getDetails(props.userId)}>
           {/* <Grid container xs={12}> */}
             <Grid item xs={3} className={classes.status} style={{textAlign: "center"}} >
               {props.changeIcon? <CheckCircleIcon /> : <CancelIcon />}
