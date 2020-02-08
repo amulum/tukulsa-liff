@@ -15,18 +15,20 @@ import ReactMuter from "../Components/ReactMuter";
 class Home extends Component {
    
   componentDidMount = async () => {
-    await this.props.getUserInfo()
-  }
-  handleGetDetails = async (message) => {
-    await this.props.sendMessageLiff(message)
-    await this.props.closeWindow()
+    console.log('1')
+    await this.props.initializeLiff()
+    console.log('atas7 masuk did mount',this.props)
   }
   render() {
-    console.log('props di render', this.props)
-    console.log('props di render', this.props.userId)
+    console.log('di render', this.props.userId)
+    console.log('di render',this.props.displayName)
+    console.log('di render',this.props.pictureUrl)
+    console.log('di render',this.props.statusMessage)
     if (this.props.userId === '') {
+      console.log('masuk if none')
       this.props.getUserTransactions('U0c42265e3ba13d4583bfdb21fbd22cf4')
     } else {
+      console.log('masuk else')
       this.props.getUserTransactions(this.props.userId)
     }
 
@@ -35,9 +37,7 @@ class Home extends Component {
         {/* <ReactMuter /> */}
         <AppBar />
         <p>{this.props.userId}</p>
-        <TableTransaction 
-          getDetails={this.handleGetDetails}
-        />
+        <TableTransaction />
         {this.props.isLoggedIn?
         null
         :
