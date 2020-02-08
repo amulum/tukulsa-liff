@@ -22,6 +22,8 @@ class Home extends Component {
     await this.props.closeWindow()
   }
   render() {
+    console.log('props di render', this.props)
+    console.log('props di render', this.props.userId)
     if (this.props.userId === '') {
       this.props.getUserTransactions('U0c42265e3ba13d4583bfdb21fbd22cf4')
     } else {

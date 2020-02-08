@@ -95,6 +95,7 @@ export const actions = store => ({
       })
       .then(() => {
         // get general info
+        console.log('masuk then get profile')
         store.setState({
           language: liff.getLanguage(),
           OS: liff.getOS(),
