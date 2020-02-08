@@ -39,7 +39,7 @@ const TableTransaction = (props) => {
       justify="center"
       alignItems="center"
     >
-      <Button disable fullWidth>
+      <Button fullWidth style={{backgroundColor:"#459a90"}}>
         <Grid item xs={3}>
           <Typography variant="subtitle1" className={classes.padding} style={{textAlign: "center", fontWeight:'600'}}>
             Status

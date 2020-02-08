@@ -20,21 +20,21 @@ function RowTable (props)  {
   const classes = useStyles();
   const message = `cek transaksi ${props.orderId}`
   return (
-        <Button fullWidth onClick={() => props.getDetails(message)}>
-            <Grid item xs={3} className={classes.status} style={{textAlign: "center"}} >
-              props.changeIcon? <CheckCircleIcon /> : <CancelIcon />
-            </Grid>
-            <Grid item xs={5}>
-              <Typography variant="subtitle1" className={classes.padding} style={{textAlign: "center", alignItems:"center"}}>
-                {props.phoneNumber}
-              </Typography>
-            </Grid>
-            <Grid item xs={4}>
-              <Typography variant="subtitle1" className={classes.padding} style={{textAlign: "center"}}>
-                {props.nominal}
-              </Typography>
-          </Grid>
-        </Button>
+    <Button fullWidth onClick={() => props.getDetails(message)}>
+        <Grid item xs={3} className={classes.status} style={{textAlign: "center"}} >
+          props.changeIcon? <CheckCircleIcon /> : <CancelIcon />
+        </Grid>
+        <Grid item xs={5}>
+          <Typography variant="subtitle1" className={classes.padding} style={{textAlign: "center", alignItems:"center"}}>
+            {props.phoneNumber}
+          </Typography>
+        </Grid>
+        <Grid item xs={4}>
+          <Typography variant="subtitle1" className={classes.padding} style={{textAlign: "center"}}>
+            {props.nominal}
+          </Typography>
+      </Grid>
+    </Button>
   )
 }
 

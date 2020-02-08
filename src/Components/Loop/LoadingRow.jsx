@@ -10,6 +10,9 @@ const LoadingRow = (props) => {
       width: "80%",
       display: "flex",
       justifyContent: "center"
+    },
+    skeleton : {
+      width: "85%"
     }
   })
   const classes = useStyles()
@@ -17,13 +20,13 @@ const LoadingRow = (props) => {
     <Fragment >
     <Grid container justify="center" alignItems="center">
         <Grid item xs={3} className={classes.cell}>
-          <Skeleton width="80%"/>
+          <Skeleton animation="wave" className={classes.skeleton}/>
         </Grid>
         <Grid item xs={5} className={classes.cell}>
-          <Skeleton width="80%" />
+          <Skeleton animation="wave" className={classes.skeleton}/>
         </Grid>
         <Grid item xs={4} className={classes.cell}>
-          <Skeleton width="80%" />
+          <Skeleton animation="wave" className={classes.skeleton}/>
         </Grid>
       </Grid>
     </Fragment>
