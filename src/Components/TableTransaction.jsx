@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'unistore/react'
 import { actions } from '../store/store'
 import { withRouter } from 'react-router-dom'
-import { TableBody, TableCell, Table, TableContainer, TableRow, TableHead, Grid, makeStyles, GridList, Typography } from '@material-ui/core'
+import { TableBody, TableCell, Table, TableContainer, TableRow, TableHead, Grid, makeStyles, GridList, Typography, Button } from '@material-ui/core'
 import RowTable from './Loop/RowTable'
 
 const useStyles = makeStyles(theme => ({
@@ -26,6 +26,7 @@ const TableTransaction = (props) => {
         nominal={item.nominal}
         changeIcon={changeIcon}
         colorIcon={colorIcon}
+        getDetails={props.getDetails}
       />
       )    
   })

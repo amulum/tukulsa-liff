@@ -17,8 +17,15 @@ const initialState = {
   statusMessage: '',
   listTransactions: []
 };
-export const store = createStore(initialState);
 
+const initLiff = () => {
+  return new Promise((resolve, reject) => {
+    liff.init({
+      liffId: "1653837101-NwEQEqV9" // use own liffId
+    })
+  });
+}
+export const store = createStore(initialState);
 
 // testing = 'https://tukulsa-new-test.herokuapp.com'
 // prod = 'https://tukulsa-prod.herokuapp.com'
@@ -82,50 +89,64 @@ export const actions = store => ({
         console.log('masuk error', error);
       });
   },
-  initializeLiff: (state) => {
+  // LIFF FUNCTIONS
+  closeWindow: (store) => {
+    liff.closeWindow()
+  },
+  getUserInfo: (store) => {
     // const myLiffId = process.env.MY_LIFF_ID;
     console.log('2')
     console.log('masuk initializeLiff')
-    liff
-      .init({
-        liffId: "1653837101-NwEQEqV9" // use own liffId
-      })
-      .then(() => {
-        // Start to use liff's api
-        console.log('3')
-        console.log('masuk initializeApp')
-        console.log('5')
-        store.setState({
-          language: liff.getLanguage(),
-          OS: liff.getOS(),
-          version: liff.getVersion(),
-          isInClient: liff.isInClient(),
-          isLoggedIn: liff.isLoggedIn(),
-        })
-
-        // get profile
-        liff.getProfile().then(profile => {
-            store.setState({
-              userId: profile.userId,
-              displayName: profile.displayName,
-              pictureUrl: profile.pictureUrl,
-              statusMessage: profile.statusMessage
-            })
-            console.log('6')
-            console.log('getprofile liff', initialState.userId)
-            console.log('getprofile liff', initialState.displayName)
-            console.log('getprofile liff', initialState.pictureUrl)
-            console.log('getprofile liff', initialState.statusMessage)
+    return new Promise((resolve, reject) => {
+      initLiff()
+        .then(() => {
+          // Start to use liff's api
+          store.setState({
+            language: liff.getLanguage(),
+            OS: liff.getOS(),
+            version: liff.getVersion(),
+            isInClient: liff.isInClient(),
+            isLoggedIn: liff.isLoggedIn(),
           })
-          .catch((err) => {
-            console.log('6 error')
-            console.log('error', err);
-          });
-      })
-      .catch((err) => {
-        // Error happens during initialization
-        console.log('4')
-        console.log(err.code, err.message);
-      });
+
+          // get profile
+          liff.getProfile().then(profile => {
+              store.setState({
+                userId: profile.userId,
+                displayName: profile.displayName,
+                pictureUrl: profile.pictureUrl,
+                statusMessage: profile.statusMessage
+              })
+            })
+            .catch((err) => {
+              console.log('error', err);
+            });
+        })
+        .catch((err) => {
+          // Error happens during initialization
+          console.log('4')
+          console.log(err.code, err.message);
+        });
+    });
+  },
+  sendMessageLiff: (store, messages) => {
+    console.log('masuk send message')
+    const messagesToSend = Array.isArray(messages) ? messages : [messages];
+    return new Promise((resolve, reject) => {
+      initLiff()
+        .then(() => {
+          liff.sendMessages(messagesToSend)
+            .then(() => {
+              resolve();
+            })
+            .catch((err) => {
+              reject(err);
+            });
+        })
+        .catch((err) => {
+          console.log('masuk error send message', err)
+          reject(err);
+        });
+    });
   }
 })
