@@ -22,7 +22,7 @@ function RowTable (props)  {
   return (
     <Button fullWidth onClick={() => props.getDetails(message)}>
         <Grid item xs={3} className={classes.status} style={{textAlign: "center"}} >
-          props.changeIcon? <CheckCircleIcon /> : <CancelIcon />
+          {props.changeIcon? <CheckCircleIcon /> : <CancelIcon />}
         </Grid>
         <Grid item xs={5}>
           <Typography variant="subtitle1" className={classes.padding} style={{textAlign: "center", alignItems:"center"}}>
