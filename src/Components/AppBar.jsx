@@ -7,6 +7,7 @@ import { connect, actions } from 'unistore/react';
 import { withRouter } from 'react-router-dom'
 import { Grid } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
+import { Skeleton } from '@material-ui/lab';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,6 +24,11 @@ const useStyles = makeStyles(theme => ({
   hello : {
     textAlign: 'right',
     color: '#2c6553'
+  },
+  wrapName : {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-end"
   }
 }));
 
@@ -49,14 +55,18 @@ function MenuAppBar(props) {
       <AppBar position="static" className={classes.root}>
         <Toolbar>
           <Grid container alignItems="center" spacing={2} style={{marginTop:"0.5%"}}>
-            <Grid item xs={10} className={classes.hello}>
-              <Typography >
-                Hallooohhh, {props.isLoading? 'cuy' : props.displayName}
-              </Typography>
+            <Grid item xs={10} className={classes.wrapName}>
+              {props.isLoading?
+                <Skeleton animation="wave" width="40%" className={classes.hello} height={40} />
+                : 
+                <Typography className={classes.hello}>
+                  ` Hallooohhh, ${props.displayName}`
+                </Typography>
+              }
             </Grid>
             <Grid item xs={2} alignItems="ce">
               {props.isLoading?
-                <Avatar alt="cobain" src={`${props.pictureUrl}`} />
+                <Skeleton animation="wave" variant="circle" height={40} width={40}/>
               :
                 <Avatar alt="cobain" src={`${props.pictureUrl}`} />
               }
