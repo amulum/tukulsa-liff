@@ -60,7 +60,7 @@ function MenuAppBar(props) {
                 <Skeleton animation="wave" width="40%" className={classes.hello} height={40} />
                 : 
                 <Typography className={classes.hello}>
-                  ` Hallooohhh, ${props.displayName}`
+                  Hallooohhh, {props.displayName}
                 </Typography>
               }
             </Grid>
