@@ -29,7 +29,7 @@ class Home extends Component {
     console.log('di render',this.props.statusMessage)
     if (this.props.userId === '') {
       console.log('masuk if none')
-      store.setState({isLoading: true})
+      this.props.getUserTransactions('U0c42265e3ba13d4583bfdb21fbd22cf4')
     } else {
       console.log('masuk else')
       this.props.getUserTransactions(this.props.userId)

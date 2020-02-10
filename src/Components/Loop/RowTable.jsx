@@ -14,13 +14,17 @@ function RowTable (props)  {
       padding : '0.6em'
     },
     padding : {
-      padding : '0.6em'
+      padding : '0.6em',
+      fontWeight: '500'
     },
+    selectedTrx : {
+      backgroundColor : ''
+    }
   }));
   const classes = useStyles();
   const message = `cek transaksi ${props.orderId}`
   return (
-    <Button fullWidth onClick={() => props.getDetails(message)}>
+    <Button fullWidth onClick={() => props.getDetails(message)} className={classes.selectedTrx} variant="contained">
         <Grid item xs={3} className={classes.status} style={{textAlign: "center"}} >
           {props.changeIcon? <CheckCircleIcon /> : <CancelIcon />}
         </Grid>
